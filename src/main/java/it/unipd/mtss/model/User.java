@@ -20,7 +20,7 @@ public class User {
             throw new IllegalArgumentException("Date of birth cannot be null");
         }
         if(id > 100000) {
-            throw new IllegalArgumentException("ID cannot be more than 100");
+            throw new IllegalArgumentException("ID cannot be more than 100000");
         }
         if(birthDate.isBefore(LocalDate.now())) {
             this.birthDate = birthDate;
