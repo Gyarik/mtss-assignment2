@@ -25,6 +25,9 @@ public class BillObj implements Bill {
         if(user == null) {
             throw new BillException("User cannot be null");
         }
+        if(itemsOrdered.size() > 30) {
+            throw new BillException("There cannot be more than 30 items");
+        }
 
         double cheapestProcessor = Double.MAX_VALUE;
         double cheapestMouse = Double.MAX_VALUE;
