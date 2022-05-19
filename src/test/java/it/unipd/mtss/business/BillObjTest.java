@@ -103,4 +103,17 @@ public class BillObjTest {
         assertEquals(157.2, bill.getOrderPrice(itemsOrdered, user), 1e-4);
     }
 
+    @Test
+    public void testGetSum_MouseEqualsKeyboard() throws BillException {
+        // Act
+        for(int i=0; i<5; i++) {
+            itemsOrdered.add(new EItem(EItem.category.MOUSE, "Logitech", i + 10.22));
+        }
+        for(int i=0; i<5; i++) {
+            itemsOrdered.add(new EItem(EItem.category.KEYBOARD, "HyperX", i + 123.50));
+        }
+        // Assert
+        assertEquals(678.38, bill.getOrderPrice(itemsOrdered, user), 1e-4);
+    }
+
 }
