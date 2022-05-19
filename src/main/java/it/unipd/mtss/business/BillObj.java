@@ -65,6 +65,9 @@ public class BillObj implements Bill {
         if(countMouse == countKey) {
             return tot - Math.min(cheapestKeyboard, cheapestMouse);
         }
+        if(tot > 1000.0) {
+            return tot - (0.1 * tot);
+        }
 
         return tot;
     }
