@@ -5,6 +5,7 @@
 
 package it.unipd.mtss.business;
 
+import it.unipd.mtss.business.exception.BillException;
 import it.unipd.mtss.model.EItem;
 
 import java.util.List;
