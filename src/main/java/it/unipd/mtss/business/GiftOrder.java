@@ -25,8 +25,11 @@ public class GiftOrder {
     }
 
     public boolean canBeGifted(User user, LocalTime timeStamp) {
+        // Controlla se lo user e' minorenne
         if(Period.between(user.getBirthDate(), LocalDate.now()).getYears() < 18) {
+            // Controlla se l'ordine e' stato eseguito tra le 18 e le 19
             if(timeStamp.isAfter(LocalTime.of(18, 0)) && timeStamp.isBefore(LocalTime.of(19, 0))) {
+                // Controlla se non ci sono gia' 10 user selezionati
                 if(users.size() < 10) {
                     return true;
                 }
@@ -36,12 +39,16 @@ public class GiftOrder {
     }
 
     public boolean makeGift(User user, LocalTime timeStamp) {
+        // Lancia un'eccezione se:
+        // - user e' nullo
+        // - timeStamp e' nullo
         if(user == null) {
             throw new IllegalArgumentException("User cannot be null");
         }
         if(timeStamp == null) {
             throw new IllegalArgumentException("Timestamp cannot be null");
         }
+        // se lo user puo' partecipare al giveaway aggiungilo alla lista
         if(canBeGifted(user, timeStamp)) { //&& rand.nextInt(100) < 30
             users.add(user);
             return true;
