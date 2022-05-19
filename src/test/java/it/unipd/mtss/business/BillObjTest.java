@@ -139,4 +139,12 @@ public class BillObjTest {
             assertEquals("There cannot be more than 30 items", e.getMessage());
         }
     }
+
+    @Test
+    public void testGetSum_Fee() throws BillException {
+        // Act
+        itemsOrdered.add(new EItem(EItem.category.MOUSE, "Logitech", 9.51));
+        // Assert
+        assertEquals(11.51, bill.getOrderPrice(itemsOrdered, user), 1e-4);
+    }
 }
