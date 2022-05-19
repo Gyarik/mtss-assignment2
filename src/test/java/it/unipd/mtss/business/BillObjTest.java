@@ -116,4 +116,13 @@ public class BillObjTest {
         assertEquals(678.38, bill.getOrderPrice(itemsOrdered, user), 1e-4);
     }
 
+    @Test
+    public void testGetSum_Discount1000() throws BillException {
+        // Act
+        for(int i=0; i<10; i++) {
+            itemsOrdered.add(new EItem(EItem.category.KEYBOARD, "ASUS", 110.0));
+        }
+        // Assert
+        assertEquals(990.0, bill.getOrderPrice(itemsOrdered, user), 1e-4);
+    }
 }
