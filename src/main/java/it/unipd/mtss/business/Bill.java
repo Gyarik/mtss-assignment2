@@ -5,6 +5,8 @@
 
 package it.unipd.mtss.business;
 
+import it.unipd.mtss.model.EItem;
+
 import java.util.List;
 
 public interface Bill {
