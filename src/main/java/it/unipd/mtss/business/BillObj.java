@@ -71,6 +71,9 @@ public class BillObj implements Bill {
         if(tot > 1000.0) {
             return tot - (0.1 * tot);
         }
+        if(tot < 10.0) {
+            tot += 2.0;
+        }
 
         return tot;
     }
