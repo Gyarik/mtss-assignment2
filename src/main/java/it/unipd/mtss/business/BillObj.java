@@ -14,7 +14,7 @@ import java.util.List;
 public class BillObj implements Bill {
     public double getOrderPrice(List<EItem> itemsOrdered, User user) throws BillException {
         double tot = 0.0;
-        int countProc = 0;
+        int countProc = 0, countMouse = 0;
 
         if(itemsOrdered == null) {
             throw new BillException("Items Ordered List cannot be null");
@@ -27,6 +27,7 @@ public class BillObj implements Bill {
         }
 
         double cheapestProcessor = Double.MAX_VALUE;
+        double cheapestMouse = Double.MAX_VALUE;
 
         for(EItem item : itemsOrdered) {
             switch(item.getItemType()) {
@@ -34,6 +35,12 @@ public class BillObj implements Bill {
                     countProc++;
                     if (item.getPrice() < cheapestProcessor) {
                         cheapestProcessor = item.getPrice();
+                    }
+                    break;
+                case MOUSE:
+                    countMouse++;
+                    if(item.getPrice() < cheapestMouse) {
+                        cheapestMouse = item.getPrice();
                     }
                     break;
                 default:
@@ -44,6 +51,9 @@ public class BillObj implements Bill {
 
         if(countProc > 5) {
             return tot - cheapestProcessor / 2;
+        }
+        if(countMouse > 10) {
+            return tot - cheapestMouse;
         }
 
         return tot;
