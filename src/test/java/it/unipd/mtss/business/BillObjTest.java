@@ -125,4 +125,18 @@ public class BillObjTest {
         // Assert
         assertEquals(990.0, bill.getOrderPrice(itemsOrdered, user), 1e-4);
     }
+
+    @Test
+    public void testGetSum_TooManyItems() {
+        // Act
+        for(int i=0; i<31; i++) {
+            itemsOrdered.add(new EItem(EItem.category.KEYBOARD, "ASUS", 110.0));
+        }
+        try {
+            bill.getOrderPrice(itemsOrdered, user);
+        } catch(BillException e) {
+            // Assert
+            assertEquals("There cannot be more than 30 items", e.getMessage());
+        }
+    }
 }
