@@ -79,4 +79,18 @@ public class BillObjTest {
             assertEquals("User cannot be null", e.getMessage());
         }
     }
+
+    @Test
+    public void testGetSum_ProcessorDiscount() throws BillException {
+        // Act
+        itemsOrdered.add(new EItem(EItem.category.PROCESSOR, "AMD Ryzen 5 5600X", 299.99));
+        itemsOrdered.add(new EItem(EItem.category.PROCESSOR, "AMD Ryzen 7 5800X", 449.50));
+        itemsOrdered.add(new EItem(EItem.category.PROCESSOR, "AMD Ryzen 5 4500", 129.22));
+        itemsOrdered.add(new EItem(EItem.category.PROCESSOR, "Intel i3 10400", 182.00));
+        itemsOrdered.add(new EItem(EItem.category.PROCESSOR, "Intel i5 10700K", 374.15));
+        itemsOrdered.add(new EItem(EItem.category.PROCESSOR, "Intel i9 10900K", 488.33));
+        // Assert
+        assertEquals(1858.58, bill.getOrderPrice(itemsOrdered, user), 1e-4);
+    }
+
 }
