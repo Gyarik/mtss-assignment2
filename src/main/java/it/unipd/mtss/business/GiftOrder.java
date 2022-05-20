@@ -17,10 +17,10 @@ import java.util.Random;
 public class GiftOrder {
     Random rand;
     List<User> users;
-    int count;
 
     public GiftOrder() {
         rand = new Random();
+        rand.setSeed(10);
         users = new ArrayList<>();
     }
 
@@ -48,8 +48,8 @@ public class GiftOrder {
         if(timeStamp == null) {
             throw new IllegalArgumentException("Timestamp cannot be null");
         }
-        // se lo user puo' partecipare al giveaway aggiungilo alla lista
-        if(canBeGifted(user, timeStamp)) { //&& rand.nextInt(100) < 30
+        // se lo user puo' partecipare al giveaway e viene selezionato casualmente aggiungilo alla lista
+        if(canBeGifted(user, timeStamp) && rand.nextInt(100) <= 25) {
             users.add(user);
             return true;
         }
